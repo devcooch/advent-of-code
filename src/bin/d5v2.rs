@@ -18,7 +18,10 @@ fn main() {
     let word = include_bytes!("day05.txt");
     let mut nums = Vec::new();
     for b in 65_u8..91_u8 {
-        let current_word = word.into_iter().filter(|x| **x != b && **x != (b + 32)).collect::<Vec<_>>();
+        let current_word = word
+            .into_iter()
+            .filter(|x| **x != b && **x != (b + 32))
+            .collect::<Vec<_>>();
         nums.push(collapse_word(&current_word));
     }
     println!("{}", nums.iter().min().unwrap());
