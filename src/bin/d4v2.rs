@@ -69,10 +69,10 @@ fn main() {
                 Some(_) => Some(caps.name("id").unwrap().as_str().parse().unwrap()),
                 None => None,
             },
-            month: month,
-            day: day,
-            hour: hour,
-            minute: minute,
+            month,
+            day,
+            hour,
+            minute,
         };
         events.insert(time, event);
     }
@@ -97,12 +97,7 @@ fn main() {
     }
     let most = sleeps.iter().max_by_key(|x| x.1.iter().max()).unwrap();
     let value = most.1.iter().max().unwrap();
-    let minute = sleeps
-        .get(most.0)
-        .unwrap()
-        .iter()
-        .position(|x| x == value)
-        .unwrap();
+    let minute = &sleeps[most.0].iter().position(|x| x == value).unwrap();
     println!("#{}, {} min", most.0, minute);
     println!("{}", most.0 * minute);
 }

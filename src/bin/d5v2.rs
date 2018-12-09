@@ -1,9 +1,9 @@
-fn collapse_word(word: &Vec<&u8>) -> usize {
+fn collapse_word(word: &[&u8]) -> usize {
     let mut result = Vec::new();
     result.reserve(word.len());
     let mut last_char: u8 = 0;
     for c in word.iter() {
-        if (**c as i32 - last_char as i32).abs() == 32 {
+        if (i32::from(**c) - i32::from(last_char)).abs() == 32 {
             result.pop();
             last_char = *result.last().unwrap_or(&0);
         } else {

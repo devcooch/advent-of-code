@@ -69,10 +69,10 @@ fn main() {
                 Some(_) => Some(caps.name("id").unwrap().as_str().parse().unwrap()),
                 None => None,
             },
-            month: month,
-            day: day,
-            hour: hour,
-            minute: minute,
+            month,
+            day,
+            hour,
+            minute,
         };
         events.insert(time, event);
     }
@@ -98,7 +98,7 @@ fn main() {
         }
     }
     let most = total.iter().max_by_key(|x| x.1).unwrap();
-    let on_minute = sleeps.get(most.0).unwrap().iter().max().unwrap();
+    let on_minute = &sleeps[most.0].iter().max().unwrap();
     println!("#{} total: {} min, worst {} min", most.0, most.1, on_minute);
-    println!("Answer is {}", on_minute * most.0);
+    println!("Answer is {}", *on_minute * most.0);
 }

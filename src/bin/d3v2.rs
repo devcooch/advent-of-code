@@ -12,25 +12,21 @@ fn main() {
         let y = caps.name("y").unwrap().as_str().parse::<usize>().unwrap();
         let w = caps.name("w").unwrap().as_str().parse::<usize>().unwrap();
         let h = caps.name("h").unwrap().as_str().parse::<usize>().unwrap();
-        for i in x..x + w {
-            for j in y..y + h {
-                patch[i][j] += 1;
+        for row in patch.iter_mut().skip(x).take(w) {
+            for item in row.iter_mut().skip(y).take(h) {
+                *item += 1;
             }
         }
         claims.push((id, x, y, w, h));
     }
-    for (id, x, y, w, h) in claims {
-        let mut good = true;
-        'outer: for i in x..x + w {
-            for j in y..y + h {
-                if patch[i][j] > 1 {
-                    good = false;
-                    break 'outer;
+    'outer: for (id, x, y, w, h) in claims {
+        for row in patch.iter().skip(x).take(w) {
+            for item in row.iter().skip(y).take(h) {
+                if *item > 1 {
+                    continue 'outer;
                 }
             }
         }
-        if good {
-            println!("{}", id);
-        }
+        println!("{}", id);
     }
 }
