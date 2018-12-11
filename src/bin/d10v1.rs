@@ -15,7 +15,7 @@ fn main() {
         let vy: i32 = caps.name("vy").unwrap().as_str().parse().unwrap();
         points.push((x, y, vx, vy));
     }
-    for _ in 0..100000 {
+    for _ in 0..100_000 {
         let min_x = points.iter().map(|p| p.0).min().unwrap();
         let max_x = points.iter().map(|p| p.0).max().unwrap();
         let min_y = points.iter().map(|p| p.1).min().unwrap();
