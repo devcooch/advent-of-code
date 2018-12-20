@@ -17,6 +17,6 @@ fn fetch_meta(iter: &mut std::slice::Iter<u32>) -> u32 {
 
 fn main() {
     let data = include_str!("day08.txt");
-    let numbers: Vec<u32> = data.trim().split(" ").map(|x| x.parse().unwrap()).collect();
+    let numbers: Vec<u32> = data.trim().split(' ').map(|x| x.parse().unwrap()).collect();
     println!("{}", fetch_children(&mut numbers.iter()));
 }
